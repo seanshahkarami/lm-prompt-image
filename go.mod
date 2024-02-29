@@ -1,4 +1,4 @@
-module lm-tools
+module github.com/seanshahkarami/lm-tools
 
 go 1.22.0
 
