@@ -16,7 +16,8 @@ import (
 )
 
 func main() {
-	addr := flag.String("addr", "localhost:1234", "address of llama.cpp server")
+	var addr string
+	flag.StringVar(&addr, "addr", "localhost:1234", "address of llama.cpp server")
 	flag.Parse()
 
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
@@ -34,7 +35,7 @@ func main() {
 	paths := args[1:]
 
 	config := openai.DefaultConfig("not-needed")
-	config.BaseURL = fmt.Sprintf("http://%s/v1", *addr)
+	config.BaseURL = fmt.Sprintf("http://%s/v1", addr)
 	client := openai.NewClientWithConfig(config)
 
 	for _, path := range paths {
