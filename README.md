@@ -42,7 +42,7 @@ jq . results.ndjson
 }
 ```
 
-By default, it talks to the model listening on `http://localhost:1234` using the OpenAI chat protocol. This can be configured with the `-addr otherhost:port` flag.
+By default, it talks to the model listening on `http://localhost:1234` using the openai / llama.cpp chat protocol. This can be configured with the `-addr otherhost:port` flag.
 
 It can also be easily used with a remote llama.cpp server by opening an ssh proxy.
 
