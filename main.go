@@ -15,26 +15,6 @@ import (
 	openai "github.com/sashabaranov/go-openai"
 )
 
-type InferenceRecord struct {
-	Path   string `json:"path"`
-	Prompt string `json:"prompt"`
-	Text   string `json:"text"`
-}
-
-func getFileFormat(path string) string {
-	switch strings.ToLower(filepath.Ext(path)) {
-	case ".jpeg", ".jpg":
-		return "image/jpeg"
-	case ".png":
-		return "image/png"
-	default:
-		return ""
-	}
-}
-
-// func doInference(client *openai.Client, path string) (*InferenceRecord, error) {
-// }
-
 func main() {
 	addr := flag.String("addr", "localhost:1234", "address of llama.cpp server")
 	flag.Parse()
@@ -101,15 +81,26 @@ func main() {
 		record := struct {
 			Path   string `json:"path"`
 			Prompt string `json:"prompt"`
-			Text   string `json:"text"`
+			Output string `json:"output"`
 		}{
 			Path:   path,
 			Prompt: prompt,
-			Text:   strings.TrimSpace(resp.Choices[0].Message.Content),
+			Output: strings.TrimSpace(resp.Choices[0].Message.Content),
 		}
 
 		if err := json.NewEncoder(os.Stdout).Encode(&record); err != nil {
 			logger.Fatalf("error writing record: %v", err)
 		}
+	}
+}
+
+func getFileFormat(path string) string {
+	switch strings.ToLower(filepath.Ext(path)) {
+	case ".jpeg", ".jpg":
+		return "image/jpeg"
+	case ".png":
+		return "image/png"
+	default:
+		return ""
 	}
 }
