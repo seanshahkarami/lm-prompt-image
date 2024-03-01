@@ -1,4 +1,4 @@
-# LM Tools
+# LM Prompt Image Tool
 
 This tool takes a prompt and a series of images and returns model outputs as structured, new-lined delimited JSON data which can be used by tools like jq.
 
