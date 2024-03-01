@@ -1,4 +1,4 @@
-module github.com/seanshahkarami/lm-tools
+module github.com/seanshahkarami/lm-prompt-image
 
 go 1.22.0
 
