@@ -2,4 +2,4 @@ module github.com/seanshahkarami/lm-tools
 
 go 1.22.0
 
-require github.com/sashabaranov/go-openai v1.20.1 // indirect
+require github.com/sashabaranov/go-openai v1.20.2
